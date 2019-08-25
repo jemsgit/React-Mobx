@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should be unauthorized 1`] = `
+Array [
+  Object {
+    "op": "replace",
+    "path": "/isAuth",
+    "value": true,
+  },
+]
+`;
