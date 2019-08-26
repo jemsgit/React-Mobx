@@ -1,6 +1,13 @@
 import React, {Component} from 'react';
-import { observer, inject } from 'mobx-react';
-import { MobxConsumer } from '../../stores/rootStore';
+import { observer } from 'mobx-react';
+import { Input } from '@material-ui/core';
+import { Button } from '@material-ui/core';
+import { MobxContext } from '../../stores/rootStore';
+import LoginForm from '../login-form/login-form';
+
+import './login.css';
+
+let form = new LoginForm();
 
 class Login extends Component {
     componentDidMount() {
@@ -12,11 +19,25 @@ class Login extends Component {
         let value = this.context;
         console.log(value.userStore)
         return (
-            <div>Hello React,Web23pack2 4 & Babel 27!<span> {value.userStore.login} </span></div>
+            <div className='login-page'>
+                Hello
+                <form>
+
+                    <Input {...form.$('login').bind()} />
+                    <p>{form.$('login').error}</p>
+                    <Input type='password'
+                        {...form.$('password').bind()} 
+                    />
+                    <p>{form.$('password').error}</p>
+                    <Button type="submit" onClick={form.onSubmit}>Submit</Button>
+
+                    <p>{form.error}</p>
+                </form>
+            </div>
         );
     }
 }
 
-Login.contextType = MobxConsumer;
+Login.contextType = MobxContext;
 
 export default observer(Login);
